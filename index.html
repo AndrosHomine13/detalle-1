@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorpresa San Valentín 💘</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <h1 class="brillo">¡Feliz Día de San Valentín! 💞</h1>
+  </header>
+
+  <main class="contenedor">
+    <section class="galeria">
+      <img src="img/1.jpg" alt="Recuerdo 1">
+      <img src="img/2.jpg" alt="Recuerdo 2">
+      <img src="img/3.jpg" alt="Recuerdo 3">
+      <img src="img/4.jpg" alt="Recuerdo 4">
+      <img src="img/5.jpg" alt="Recuerdo 5">
+    </section>
+  </main>
+
+  <div class="hearts-container"></div>
+
+  <script>
+    const container = document.querySelector(".hearts-container");
+
+    function createHeart() {
+      const heart = document.createElement("span");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 3 + Math.random() * 4 + "s";
+      heart.style.fontSize = 14 + Math.random() * 26 + "px";
+      heart.style.opacity = Math.random();
+
+      container.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>

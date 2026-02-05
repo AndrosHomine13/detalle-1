@@ -1,0 +1,141 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Neue", cursive;
+}
+
+/* FONDO GENERAL */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f2c0c0, #f8f6f1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ENCABEZADO */
+.encabezado {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* TEXTO CON BRILLO */
+.brillo {
+    font-size: clamp(24px, 6vw, 60px);
+    font-weight: 700;
+    background: linear-gradient(
+        90deg,
+        #ff4d88,
+        #ffffff,
+        #ff4d88
+    );
+    background-size: 200%;
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: brillo 3s infinite linear;
+    text-shadow: 0 4px 12px rgba(255, 77, 136, 0.3);
+}
+
+@keyframes brillo {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+}
+
+/* CONTENEDOR */
+.contenedor {
+    display: grid;
+    place-items: center;
+}
+
+/* GALERÍA */
+.galeria {
+    --d: 10s;
+    display: grid;
+    place-items: center;
+    width: 220px;
+}
+
+/* IMÁGENES */
+.galeria img {
+    grid-area: 1 / 1;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 8px solid white;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    animation: slide var(--d) infinite,
+               z-order var(--d) infinite steps(1);
+}
+
+/* ÚLTIMA IMAGEN */
+.galeria img:last-child {
+    animation-name: slide, z-order-last;
+}
+
+/* ROTACIONES */
+.galeria img:nth-child(1) { animation-delay: calc(0 * var(--d)); --r: 12deg; }
+.galeria img:nth-child(2) { animation-delay: calc(-0.2 * var(--d)); --r: -6deg; }
+.galeria img:nth-child(3) { animation-delay: calc(-0.4 * var(--d)); --r: -16deg; }
+.galeria img:nth-child(4) { animation-delay: calc(-0.6 * var(--d)); --r: 6deg; }
+.galeria img:nth-child(5) { animation-delay: calc(-0.8 * var(--d)); --r: -10deg; }
+
+/* ANIMACIONES */
+@keyframes slide {
+    0%, 20%, 100% {
+        transform: translateX(0) rotate(var(--r));
+    }
+    10% {
+        transform: translateX(130%) rotate(var(--r));
+    }
+}
+
+@keyframes z-order {
+    10%, 20% { z-index: 1; }
+    80% { z-index: 2; }
+}
+
+@keyframes z-order-last {
+    10%, 20% { z-index: 1; }
+    90% { z-index: 2; }
+}
+
+/* CONTENEDOR DE CORAZONES */
+.hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* CORAZÓN */
+.heart {
+    position: absolute;
+    bottom: -10px;
+    color: #ff4d88;
+    animation: floatUp linear forwards;
+    text-shadow: 0 0 8px rgba(255, 77, 136, 0.6);
+}
+
+/* ANIMACIÓN */
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(1);
+    }
+    to {
+        transform: translateY(-110vh) scale(1.4);
+    }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .galeria {
+        width: 150px;
+    }
+}
